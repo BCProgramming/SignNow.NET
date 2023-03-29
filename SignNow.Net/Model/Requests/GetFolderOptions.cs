@@ -36,7 +36,7 @@ namespace SignNow.Net.Model.Requests
         private Dictionary<string, bool> InternalWithTeamDocument { get; set; }
 
         [JsonProperty("include_documents_subfolders")]
-        private Dictionary<string, bool> InternalIncludeDocumentsSubfolder { get; set; }
+        private Dictionary<string, int> InternalIncludeDocumentsSubfolder { get; set; }
 
         [JsonProperty("exclude_documents_relations")]
         private Dictionary<string, bool> InternalExcludeDocumentsRelations { get; set; }
@@ -114,8 +114,8 @@ namespace SignNow.Net.Model.Requests
         [JsonIgnore]
         public bool IncludeDocumentsSubfolder
         {
-            get => InternalIncludeDocumentsSubfolder.Values.FirstOrDefault();
-            set => InternalIncludeDocumentsSubfolder = new Dictionary<string, bool> {{"include_documents_subfolders", value}};
+            get => InternalIncludeDocumentsSubfolder.Values.FirstOrDefault()!=0;
+            set => InternalIncludeDocumentsSubfolder = new Dictionary<string, int> {{"include_documents_subfolders", value?1:0}};
         }
 
         /// <summary>
